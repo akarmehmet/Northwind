@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/Models/cartItem';
+import { Product } from 'src/app/Models/product';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart-summary',
@@ -8,12 +10,19 @@ import { CartItem } from 'src/app/Models/cartItem';
 })
 export class CartSummaryComponent implements OnInit {
 
-cartItems:CartItem[];
+cartItems:CartItem[]=[];
 
-constructor(){}
+constructor(private cartService:CartService){}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getCart();
+  }
+  getCart(){
+    this.cartItems = this.cartService.list();
+  }
+
+  removeFromCart(product:Product){
+    this.cartService.removeFromCart(product);
   }
 
 }
