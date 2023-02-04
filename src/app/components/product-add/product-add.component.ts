@@ -35,6 +35,7 @@ export class ProductAddComponent implements OnInit {
   }
 
   add(){
+    console.log("product add")
     if(this.productAddForm.valid){
       let productModel = Object.assign({},this.productAddForm.value);
       console.log("ürün ekleme çağırıldı.");
@@ -54,12 +55,9 @@ export class ProductAddComponent implements OnInit {
           }
         },
         complete:()=> {
-          this.toastrService
+         
         },
       });
-      
-      this.toastrService
-     
     }
     else{
       this.toastrService.error("Formunuz eksik","Dikkat");
